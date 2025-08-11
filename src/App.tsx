@@ -2,10 +2,11 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import FitImageComponent from './component/FitImageComponent'
 
 function App() {
   const [count, setCount] = useState(0)
-
+  const [imageFile, setImageFile] = useState<File | null>(null);
   return (
     <>
       <div>
@@ -28,6 +29,19 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <input type="file" accept="image/*" onChange={(e) => {
+        const file = e.target.files?.[0] || null;
+        setImageFile(file);
+      }} />
+      <img
+        src={imageFile ? URL.createObjectURL(imageFile) : ''}
+        alt="Selected"
+      />
+      <FitImageComponent
+        file={imageFile}
+        width={600}
+        height={600}
+      />
     </>
   )
 }
