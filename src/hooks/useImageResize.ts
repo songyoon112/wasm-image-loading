@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 
-// Define the options for resizing the image
 interface ResizeOptions {
   width: number;
   height: number;
